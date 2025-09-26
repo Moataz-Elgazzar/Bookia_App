@@ -2,7 +2,7 @@
 
 ## 📸 Screenshots
 
-### Splash & welcome & login & register & forget password & otp & creat password & password changed
+### Splash & welcome & login & register & forget password & otp & creat password & password changed & home & details & wishlist & cart
 <p float="left">
   <img src="splash.png" width="150" />
   <img src="welcome.png" width="150" />
