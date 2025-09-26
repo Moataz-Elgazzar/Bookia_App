@@ -9,6 +9,10 @@ class TextStyles {
     return TextStyle(color: color, fontSize: 26, fontWeight: FontWeight.normal);
   }
 
+  static TextStyle styleSize24({Color? color, double? fontSize, FontWeight? fontWeight}) {
+    return TextStyle(color: color, fontSize: 24, fontWeight: FontWeight.normal);
+  }
+
   static TextStyle styleSize20({Color? color, double? fontSize, FontWeight? fontWeight}) {
     return TextStyle(color: color, fontSize: 20, fontWeight: FontWeight.normal);
   }

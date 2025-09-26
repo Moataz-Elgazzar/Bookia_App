@@ -5,6 +5,11 @@ pushTo(BuildContext context, String route) {
   context.push(route);
 }
 
+pushToWithExtra(BuildContext context, String route , Object extra) {
+  context.push(route , extra: extra);
+}
+
+
 pushWithReplacement(BuildContext context, String route) {
   context.push(route);
 }

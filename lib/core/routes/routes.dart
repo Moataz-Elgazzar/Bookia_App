@@ -4,6 +4,10 @@ import 'package:bookia/features/auth/presentation/forget_password/pages/otp_scre
 import 'package:bookia/features/auth/presentation/forget_password/pages/password_changed_screen.dart';
 import 'package:bookia/features/auth/presentation/login/pages/login_screen.dart';
 import 'package:bookia/features/auth/presentation/register/pages/register_screen.dart';
+import 'package:bookia/features/details/pages/details_screen.dart';
+import 'package:bookia/features/home/models/product_best.dart';
+import 'package:bookia/features/home/pages/home_screen.dart';
+import 'package:bookia/features/main/pages/main_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome_screen/welcome_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +21,9 @@ class Routes {
   static const String otp = '/otp';
   static const String creatPassword = '/creatPassword';
   static const String passwordChanged = '/passwordChanged';
+  static const String home = '/home';
+  static const String details = '/details';
+  static const String mainscreen = '/mainscreen';
 
   static GoRouter route = GoRouter(
     routes: [
@@ -28,6 +35,15 @@ class Routes {
       GoRoute(path: otp, builder: (context, state) => const OtpScreen()),
       GoRoute(path: creatPassword, builder: (context, state) => const CreatPassword()),
       GoRoute(path: passwordChanged, builder: (context, state) => const PasswordChangedScreen()),
+      GoRoute(path: home, builder: (context, state) => const HomeScreen()),
+      GoRoute(
+        path: details,
+        builder: (context, state) {
+          final product = state.extra as ProductBest;
+          return DetailsScreen(models: product);
+        },
+      ),
+      GoRoute(path: mainscreen, builder: (context, state) => const MainScreen()),
     ],
   );
 }

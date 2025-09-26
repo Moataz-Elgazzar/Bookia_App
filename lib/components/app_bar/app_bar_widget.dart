@@ -4,18 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWidget({super.key});
+  const AppBarWidget({super.key, this.image});
+
+  final SvgPicture? image;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
       centerTitle: false,
-      title: GestureDetector(
-        onTap: () {
-          pop(context);
-        },
-        child: SvgPicture.asset(AppImages.backsvg),
+      title: Row(
+        children: [
+          GestureDetector(
+            onTap: () {
+              pop(context);
+            },
+            child: SvgPicture.asset(AppImages.backsvg),
+          ),
+          const Spacer(),
+          GestureDetector(onTap: () {
+            
+          }, child: image),
+        ],
       ),
     );
   }

@@ -8,5 +8,6 @@ class AppColors {
   static const Color borderColor = Color(0xFFE8ECF4);
   static const Color darkGreyColor = Color(0xFF6A707C);
   static const Color wightColor = Color(0xFFFFFFFF);
+  static const Color cardColor = Color(0xFFF5EFE1);
   static const Color redColor = Color.fromARGB(255, 234, 86, 86);
 }
