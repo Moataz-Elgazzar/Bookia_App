@@ -1,3 +1,4 @@
+import 'package:bookia/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bookia/features/auth/presentation/forget_password/pages/creat_password.dart';
 import 'package:bookia/features/auth/presentation/forget_password/pages/forget_password_screen.dart';
 import 'package:bookia/features/auth/presentation/forget_password/pages/otp_screen.dart';
@@ -10,6 +11,7 @@ import 'package:bookia/features/home/pages/home_screen.dart';
 import 'package:bookia/features/main/pages/main_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome_screen/welcome_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class Routes {
@@ -29,11 +31,26 @@ class Routes {
     routes: [
       GoRoute(path: splash, builder: (context, state) => const SplashScreen()),
       GoRoute(path: welcome, builder: (context, state) => const WelcomeScreen()),
-      GoRoute(path: login, builder: (context, state) => const LoginScreen()),
-      GoRoute(path: register, builder: (context, state) => const RegisterScreen()),
-      GoRoute(path: forgetPassword, builder: (context, state) => const ForgetPasswordScreen()),
-      GoRoute(path: otp, builder: (context, state) => const OtpScreen()),
-      GoRoute(path: creatPassword, builder: (context, state) => const CreatPassword()),
+      GoRoute(
+        path: login,
+        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const LoginScreen()),
+      ),
+      GoRoute(
+        path: register,
+        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const RegisterScreen()),
+      ),
+      GoRoute(
+        path: forgetPassword,
+        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const ForgetPasswordScreen()),
+      ),
+      GoRoute(
+        path: otp,
+        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const OtpScreen()),
+      ),
+      GoRoute(
+        path: creatPassword,
+        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const CreatPassword()),
+      ),
       GoRoute(path: passwordChanged, builder: (context, state) => const PasswordChangedScreen()),
       GoRoute(path: home, builder: (context, state) => const HomeScreen()),
       GoRoute(

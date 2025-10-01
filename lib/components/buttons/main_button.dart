@@ -3,7 +3,16 @@ import 'package:bookia/core/utils/text_style.dart';
 import 'package:flutter/material.dart';
 
 class MainButton extends StatelessWidget {
-  const MainButton({super.key, required this.title, this.textColor, this.backgroundColor, this.bordercolor, this.width = double.infinity, this.height = 56, required this.onPressed});
+  const MainButton({
+    super.key,
+    required this.title,
+    this.textColor,
+    this.backgroundColor,
+    this.bordercolor,
+    this.width = double.infinity,
+    this.height = 56,
+    required this.onPressed,
+  });
 
   final String title;
   final Color? textColor;
@@ -22,11 +31,20 @@ class MainButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           overlayColor: Colors.transparent,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusGeometry.circular(10),
+          ),
           backgroundColor: backgroundColor ?? AppColors.primaryColor,
-          side: bordercolor != null ? BorderSide(color: AppColors.darkColor) : BorderSide.none,
+          side: bordercolor != null
+              ? BorderSide(color: AppColors.darkColor)
+              : BorderSide.none,
         ),
-        child: Text(title, style: TextStyles.styleSize18(color: textColor ?? AppColors.borderColor)),
+        child: Text(
+          title,
+          style: TextStyles.styleSize18(
+            color: textColor ?? AppColors.borderColor,
+          ),
+        ),
       ),
     );
   }

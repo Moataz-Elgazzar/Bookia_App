@@ -15,7 +15,12 @@ class Bestseller extends StatelessWidget {
     return GridView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 11, crossAxisSpacing: 11, mainAxisExtent: 281),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 11,
+        crossAxisSpacing: 11,
+        mainAxisExtent: 281,
+      ),
       itemBuilder: (context, index) => ProductBestCard(models: product[index]),
       itemCount: 4,
     );
@@ -34,7 +39,10 @@ class ProductBestCard extends StatelessWidget {
         pushToWithExtra(context, Routes.details, models);
       },
       child: Container(
-        decoration: BoxDecoration(color: AppColors.cardColor, borderRadius: BorderRadius.circular(10)),
+        decoration: BoxDecoration(
+          color: AppColors.cardColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Column(
@@ -44,7 +52,11 @@ class ProductBestCard extends StatelessWidget {
                 child: Center(
                   child: ClipRRect(
                     borderRadius: BorderRadiusGeometry.circular(10),
-                    child: Image.asset(models.image, fit: BoxFit.cover, width: double.infinity),
+                    child: Image.asset(
+                      models.image,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
                   ),
                 ),
               ),
@@ -55,7 +67,14 @@ class ProductBestCard extends StatelessWidget {
                 children: [
                   Text('₹${models.price}', style: TextStyles.styleSize16()),
                   const Spacer(),
-                  MainButton(title: 'Buy', onPressed: () {}, backgroundColor: AppColors.darkColor, textColor: AppColors.wightColor, width: 79, height: 28),
+                  MainButton(
+                    title: 'Buy',
+                    onPressed: () {},
+                    backgroundColor: AppColors.darkColor,
+                    textColor: AppColors.wightColor,
+                    width: 79,
+                    height: 28,
+                  ),
                 ],
               ),
             ],

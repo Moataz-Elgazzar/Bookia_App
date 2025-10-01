@@ -15,7 +15,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<String> images = const [AppImages.bookspng, AppImages.blackheartpng, AppImages.maskpng];
+  final List<String> images = const [
+    AppImages.bookspng,
+    AppImages.blackheartpng,
+    AppImages.maskpng,
+  ];
 
   int activeIndex = 0;
 
@@ -29,7 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SvgPicture.asset(AppImages.logosvg, width: 99, height: 30),
-            IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded, size: 35)),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.search_rounded, size: 35),
+            ),
           ],
         ),
       ),
@@ -43,7 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index, realindex) {
                   return ClipRRect(
                     borderRadius: BorderRadiusGeometry.circular(10),
-                    child: Image.asset(images[index], fit: BoxFit.fill, width: double.infinity),
+                    child: Image.asset(
+                      images[index],
+                      fit: BoxFit.fill,
+                      width: double.infinity,
+                    ),
                   );
                 },
                 options: CarouselOptions(
@@ -68,7 +79,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 4),
                     width: isActive ? 30 : 10,
                     height: 10,
-                    decoration: BoxDecoration(color: isActive ? AppColors.primaryColor : AppColors.greyColor, borderRadius: BorderRadius.circular(20)),
+                    decoration: BoxDecoration(
+                      color: isActive
+                          ? AppColors.primaryColor
+                          : AppColors.greyColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   );
                 }),
               ),

@@ -16,7 +16,12 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(AppImages.welcomepng, fit: BoxFit.cover, width: double.infinity, height: double.infinity),
+          Image.asset(
+            AppImages.welcomepng,
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(22),

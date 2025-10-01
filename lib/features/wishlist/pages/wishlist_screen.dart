@@ -8,8 +8,13 @@ class WishlistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false, title: Text('Wishlist', style: TextStyles.styleSize24())),
-      body: SingleChildScrollView(child: Column(children: [WishListCard(), Divider(), WishListCard()])),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text('Wishlist', style: TextStyles.styleSize24()),
+      ),
+      body: SingleChildScrollView(
+        child: Column(children: [WishListCard(), Divider(), WishListCard()]),
+      ),
     );
   }
 }

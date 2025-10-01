@@ -11,8 +11,13 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false, title: Text('My Cart', style: TextStyles.styleSize24())),
-      body: SingleChildScrollView(child: Column(children: [CartCard(), Divider(), CartCard()])),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text('My Cart', style: TextStyles.styleSize24()),
+      ),
+      body: SingleChildScrollView(
+        child: Column(children: [CartCard(), Divider(), CartCard()]),
+      ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -20,7 +25,10 @@ class CartScreen extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text('Total:', style: TextStyles.styleSize20(color: AppColors.greyColor)),
+                Text(
+                  'Total:',
+                  style: TextStyles.styleSize20(color: AppColors.greyColor),
+                ),
                 Spacer(),
                 Text('\$ 95.00', style: TextStyles.styleSize20()),
               ],

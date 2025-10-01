@@ -24,7 +24,12 @@ class _CartCardState extends State<CartCard> {
         children: [
           Row(
             children: [
-              Image.asset(AppImages.mask2png, fit: BoxFit.contain, height: 118, width: 100),
+              Image.asset(
+                AppImages.mask2png,
+                fit: BoxFit.contain,
+                height: 118,
+                width: 100,
+              ),
               Gap(20),
               Expanded(
                 child: Column(
@@ -33,7 +38,12 @@ class _CartCardState extends State<CartCard> {
                     Row(
                       children: [
                         Expanded(
-                          child: Text('The Republic', style: TextStyles.styleSize18(color: AppColors.greyColor)),
+                          child: Text(
+                            'The Republic',
+                            style: TextStyles.styleSize18(
+                              color: AppColors.greyColor,
+                            ),
+                          ),
                         ),
                         SvgPicture.asset(AppImages.shape),
                       ],
@@ -52,7 +62,12 @@ class _CartCardState extends State<CartCard> {
                           child: SvgPicture.asset(AppImages.add),
                         ),
                         Gap(15),
-                        Text(count < 10 ? '0${count.toString()}' : count.toString(), style: TextStyles.styleSize18()),
+                        Text(
+                          count < 10
+                              ? '0${count.toString()}'
+                              : count.toString(),
+                          style: TextStyles.styleSize18(),
+                        ),
                         Gap(15),
                         GestureDetector(
                           onTap: () {

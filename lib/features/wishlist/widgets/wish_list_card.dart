@@ -18,7 +18,12 @@ class WishListCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset(AppImages.mask2png, fit: BoxFit.contain, height: 118, width: 100),
+              Image.asset(
+                AppImages.mask2png,
+                fit: BoxFit.contain,
+                height: 118,
+                width: 100,
+              ),
               Gap(20),
               Expanded(
                 child: Column(
@@ -27,7 +32,12 @@ class WishListCard extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: Text('The Republic', style: TextStyles.styleSize18(color: AppColors.greyColor)),
+                          child: Text(
+                            'The Republic',
+                            style: TextStyles.styleSize18(
+                              color: AppColors.greyColor,
+                            ),
+                          ),
                         ),
                         SvgPicture.asset(AppImages.shape),
                       ],
@@ -37,7 +47,12 @@ class WishListCard extends StatelessWidget {
                     Gap(25),
                     Align(
                       alignment: Alignment.bottomRight,
-                      child: MainButton(title: 'Add To Cart', onPressed: () {}, width: 181.78, height: 40),
+                      child: MainButton(
+                        title: 'Add To Cart',
+                        onPressed: () {},
+                        width: 181.78,
+                        height: 40,
+                      ),
                     ),
                   ],
                 ),

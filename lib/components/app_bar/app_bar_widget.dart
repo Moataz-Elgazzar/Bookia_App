@@ -14,6 +14,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       centerTitle: false,
       title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: () {
@@ -21,10 +22,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             },
             child: SvgPicture.asset(AppImages.backsvg),
           ),
-          const Spacer(),
-          GestureDetector(onTap: () {
-            
-          }, child: image),
+
+          if (image != null) GestureDetector(onTap: () {}, child: image),
         ],
       ),
     );

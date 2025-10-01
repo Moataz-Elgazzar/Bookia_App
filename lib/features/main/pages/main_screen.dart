@@ -15,7 +15,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Widget> screen = [HomeScreen(), WishlistScreen(), CartScreen(), ProfileScreen()];
+  List<Widget> screen = [
+    HomeScreen(),
+    WishlistScreen(),
+    CartScreen(),
+    ProfileScreen(),
+  ];
 
   int currentIndex = 0;
 
@@ -24,7 +29,11 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: screen[currentIndex],
       bottomNavigationBar: NavigationBarTheme(
-        data: NavigationBarThemeData(height: 50, indicatorColor: Colors.transparent, overlayColor: WidgetStateProperty.all(Colors.transparent)),
+        data: NavigationBarThemeData(
+          height: 50,
+          indicatorColor: Colors.transparent,
+          overlayColor: WidgetStateProperty.all(Colors.transparent),
+        ),
         child: NavigationBar(
           selectedIndex: currentIndex,
           onDestinationSelected: (index) {
@@ -37,19 +46,31 @@ class _MainScreenState extends State<MainScreen> {
           elevation: 0,
           destinations: [
             NavigationDestination(
-              icon: Padding(padding: const EdgeInsets.only(top: 20), child: SvgPicture.asset(AppImages.homesvg)),
+              icon: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: SvgPicture.asset(AppImages.homesvg),
+              ),
               label: '',
             ),
             NavigationDestination(
-              icon: Padding(padding: const EdgeInsets.only(top: 20), child: SvgPicture.asset(AppImages.bookmarksvg)),
+              icon: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: SvgPicture.asset(AppImages.bookmarksvg),
+              ),
               label: '',
             ),
             NavigationDestination(
-              icon: Padding(padding: const EdgeInsets.only(top: 20), child: SvgPicture.asset(AppImages.cartsvg)),
+              icon: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: SvgPicture.asset(AppImages.cartsvg),
+              ),
               label: '',
             ),
             NavigationDestination(
-              icon: Padding(padding: const EdgeInsets.only(top: 20), child: SvgPicture.asset(AppImages.profile)),
+              icon: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: SvgPicture.asset(AppImages.profile),
+              ),
               label: '',
             ),
           ],
