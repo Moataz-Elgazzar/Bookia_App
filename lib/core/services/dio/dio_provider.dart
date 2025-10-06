@@ -4,7 +4,15 @@ class DioProvider {
   static late Dio dio;
 
   static init() {
-    dio = Dio();
+    dio = Dio(BaseOptions(
+      baseUrl: 'https://codingarabic.online/api',
+      connectTimeout: Duration(seconds: 3),
+      receiveTimeout: Duration(seconds: 3),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    ));
   }
 
   static Future<Response> post({

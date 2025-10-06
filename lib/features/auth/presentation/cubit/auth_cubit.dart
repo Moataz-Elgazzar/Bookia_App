@@ -60,9 +60,9 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  resetPassword() async {
+  resetPassword(int code) async {
     emit(AuthLoadingState());
-    var res = await AuthRepo.resetPassword(int.parse(pinController.text), newPasswordController.text, confirmNewPasswordController.text);
+    var res = await AuthRepo.resetPassword(code, newPasswordController.text, confirmNewPasswordController.text);
     if (res != null && res.status == 200) {
       emit(AuthSuccessState());
     } else {

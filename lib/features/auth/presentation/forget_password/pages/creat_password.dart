@@ -5,6 +5,7 @@ import 'package:bookia/components/buttons/main_button.dart';
 import 'package:bookia/components/inputs/custome_text_form_field.dart';
 import 'package:bookia/core/constants/app_images.dart';
 import 'package:bookia/core/routes/navigator.dart';
+import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_cubit.dart';
@@ -15,7 +16,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class CreatPassword extends StatefulWidget {
-  const CreatPassword({super.key});
+  const CreatPassword({super.key, required this.otp});
+
+  final int otp;
 
   @override
   State<CreatPassword> createState() => _CreatPasswordState();
@@ -38,9 +41,10 @@ class _CreatPasswordState extends State<CreatPassword> {
           } else if (state is AuthSuccessState) {
             pop(context);
             log('success');
+            pushAndRemoveUntil(context, Routes.passwordChanged);
           } else if (state is AuthErrorState) {
             pop(context);
-            log('faield');
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
           }
         },
         child: Padding(
@@ -115,7 +119,7 @@ class _CreatPasswordState extends State<CreatPassword> {
                     title: 'Reset Password',
                     onPressed: () {
                       if (cubit.formKey.currentState!.validate()) {
-                        cubit.resetPassword();
+                        cubit.resetPassword(widget.otp);
                       }
                     },
                   ),

@@ -45,11 +45,23 @@ class Routes {
       ),
       GoRoute(
         path: otp,
-        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const OtpScreen()),
+        builder: (context, state) {
+          var email = state.extra as String;
+          return BlocProvider(
+            create: (context) => AuthCubit(),
+            child: OtpScreen(email: email),
+          );
+        },
       ),
       GoRoute(
         path: creatPassword,
-        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const CreatPassword()),
+        builder: (context, state) {
+          var otp = state.extra as int;
+          return BlocProvider(
+            create: (context) => AuthCubit(),
+            child: CreatPassword(otp: otp),
+          );
+        },
       ),
       GoRoute(path: passwordChanged, builder: (context, state) => const PasswordChangedScreen()),
       GoRoute(path: home, builder: (context, state) => const HomeScreen()),

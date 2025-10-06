@@ -36,7 +36,7 @@ class ProductBestCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        pushToWithExtra(context, Routes.details, models);
+        pushToWithExtra(context, Routes.details, extra:  models);
       },
       child: Container(
         decoration: BoxDecoration(

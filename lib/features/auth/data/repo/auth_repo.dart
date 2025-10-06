@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bookia/core/services/dio/dio_endpoint.dart';
 import 'package:bookia/core/services/dio/dio_provider.dart';
+import 'package:bookia/core/services/local/shered_preferences.dart';
 import 'package:bookia/features/auth/data/models/auth_params.dart';
 import 'package:bookia/features/auth/data/models/auth_response/auth_response.dart';
 import 'package:bookia/features/auth/data/models/auth_response_forget_password/auth_response_forget_password.dart';
@@ -30,7 +31,10 @@ class AuthRepo {
       var res = await DioProvider.post(path: Endpoint.login, data: params.toJson());
       if (res.statusCode == 200) {
         var body = res.data;
-        return AuthResponseLogin.fromJson(body);
+        var saveUserdata = AuthResponseLogin.fromJson(body);
+        SheredPreferences.saveUserData(saveUserdata.data);
+
+        return saveUserdata;
       } else {
         return null;
       }

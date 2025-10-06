@@ -1,6 +1,7 @@
 import 'package:bookia/core/constants/app_images.dart';
 import 'package:bookia/core/routes/navigator.dart';
 import 'package:bookia/core/routes/routes.dart';
+import 'package:bookia/core/services/local/shered_preferences.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,9 +16,14 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    var user = SheredPreferences.getUserData();
     // TODO: implement initState
     Future.delayed(Duration(seconds: 3), () {
-      pushWithReplacement(context, Routes.welcome);
+      if (user != null) {
+        pushAndRemoveUntil(context, Routes.home);
+      } else {
+        pushAndRemoveUntil(context, Routes.welcome);
+      }
     });
     super.initState();
   }

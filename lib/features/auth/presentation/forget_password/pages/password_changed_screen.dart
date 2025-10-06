@@ -9,7 +9,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class PasswordChangedScreen extends StatelessWidget {
-  const PasswordChangedScreen({super.key});
+  const PasswordChangedScreen({super.key,});
+
+  
 
   @override
   Widget build(BuildContext context) {

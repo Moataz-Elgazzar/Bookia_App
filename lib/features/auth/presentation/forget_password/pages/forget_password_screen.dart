@@ -35,7 +35,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             );
           } else if (state is AuthSuccessState) {
             pop(context);
-            pushWithReplacement(context, Routes.otp);
+            pushWithReplacement(context, Routes.otp , extra: cubit.emailController.text);
           } else if (state is AuthErrorState) {
             pop(context);
             ScaffoldMessenger.of(
