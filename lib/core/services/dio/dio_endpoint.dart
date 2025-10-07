@@ -5,4 +5,6 @@ class Endpoint {
   static const String forget = '/forget-password';
   static const String otp = '/check-forget-password';
   static const String resetPassword = '/reset-password';
+  static const String productBestSeller = '/products-bestseller';
+  static const String slider = '/sliders';
 }

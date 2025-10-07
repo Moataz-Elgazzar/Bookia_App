@@ -5,9 +5,9 @@ import 'package:bookia/features/auth/presentation/forget_password/pages/otp_scre
 import 'package:bookia/features/auth/presentation/forget_password/pages/password_changed_screen.dart';
 import 'package:bookia/features/auth/presentation/login/pages/login_screen.dart';
 import 'package:bookia/features/auth/presentation/register/pages/register_screen.dart';
-import 'package:bookia/features/details/pages/details_screen.dart';
-import 'package:bookia/features/home/models/product_best.dart';
-import 'package:bookia/features/home/pages/home_screen.dart';
+import 'package:bookia/features/home/data/models/best_seller_response/product.dart';
+import 'package:bookia/features/home/presentation/pages/details_screen.dart';
+import 'package:bookia/features/home/presentation/pages/home_screen.dart';
 import 'package:bookia/features/main/pages/main_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome_screen/welcome_screen.dart';
@@ -30,18 +30,30 @@ class Routes {
   static GoRouter route = GoRouter(
     routes: [
       GoRoute(path: splash, builder: (context, state) => const SplashScreen()),
-      GoRoute(path: welcome, builder: (context, state) => const WelcomeScreen()),
+      GoRoute(
+        path: welcome,
+        builder: (context, state) => const WelcomeScreen(),
+      ),
       GoRoute(
         path: login,
-        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const LoginScreen()),
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const LoginScreen(),
+        ),
       ),
       GoRoute(
         path: register,
-        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const RegisterScreen()),
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const RegisterScreen(),
+        ),
       ),
       GoRoute(
         path: forgetPassword,
-        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const ForgetPasswordScreen()),
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const ForgetPasswordScreen(),
+        ),
       ),
       GoRoute(
         path: otp,
@@ -63,16 +75,22 @@ class Routes {
           );
         },
       ),
-      GoRoute(path: passwordChanged, builder: (context, state) => const PasswordChangedScreen()),
+      GoRoute(
+        path: passwordChanged,
+        builder: (context, state) => const PasswordChangedScreen(),
+      ),
       GoRoute(path: home, builder: (context, state) => const HomeScreen()),
       GoRoute(
-        path: details,
-        builder: (context, state) {
-          final product = state.extra as ProductBest;
-          return DetailsScreen(models: product);
-        },
+      path: details,
+      builder: (context, state) {
+       final product = state.extra as Product;
+       return DetailsScreen(book: product);
+       },
       ),
-      GoRoute(path: mainscreen, builder: (context, state) => const MainScreen()),
+      GoRoute(
+        path: mainscreen,
+        builder: (context, state) => const MainScreen(),
+      ),
     ],
   );
 }

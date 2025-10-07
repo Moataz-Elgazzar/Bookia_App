@@ -33,14 +33,21 @@ class _OtpScreenState extends State<OtpScreen> {
             showDialog(
               context: context,
               barrierDismissible: false,
-              builder: (context) => const Center(child: CircularProgressIndicator()),
+              builder: (context) =>
+                  const Center(child: CircularProgressIndicator()),
             );
           } else if (state is AuthSuccessState) {
             pop(context);
-            pushWithReplacement(context, Routes.creatPassword, extra: int.parse(cubit.pinController.text));
+            pushWithReplacement(
+              context,
+              Routes.creatPassword,
+              extra: int.parse(cubit.pinController.text),
+            );
           } else if (state is AuthErrorState) {
             pop(context);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.message)));
           }
         },
         child: Padding(
@@ -53,7 +60,10 @@ class _OtpScreenState extends State<OtpScreen> {
                 children: [
                   Text('OTP Verification', style: TextStyles.styleSize30()),
                   Gap(10),
-                  Text('Enter the verification code we just sent on\nyour email address.', style: TextStyles.styleSize16(color: AppColors.greyColor)),
+                  Text(
+                    'Enter the verification code we just sent on\nyour email address.',
+                    style: TextStyles.styleSize16(color: AppColors.greyColor),
+                  ),
                   Gap(30),
                   Center(
                     child: Pinput(
@@ -99,7 +109,10 @@ class _OtpScreenState extends State<OtpScreen> {
             onPressed: () {
               pushWithReplacement(context, Routes.forgetPassword);
             },
-            child: Text('Resend', style: TextStyles.styleSize14(color: AppColors.primaryColor)),
+            child: Text(
+              'Resend',
+              style: TextStyles.styleSize14(color: AppColors.primaryColor),
+            ),
           ),
         ],
       ),

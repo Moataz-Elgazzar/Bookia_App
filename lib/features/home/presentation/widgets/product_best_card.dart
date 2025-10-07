@@ -1,42 +1,24 @@
 import 'package:bookia/components/buttons/main_button.dart';
+import 'package:bookia/core/constants/app_images.dart';
 import 'package:bookia/core/routes/navigator.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
-import 'package:bookia/features/home/models/product_best.dart';
+import 'package:bookia/features/home/data/models/best_seller_response/product.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class Bestseller extends StatelessWidget {
-  const Bestseller({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 11,
-        crossAxisSpacing: 11,
-        mainAxisExtent: 281,
-      ),
-      itemBuilder: (context, index) => ProductBestCard(models: product[index]),
-      itemCount: 4,
-    );
-  }
-}
-
 class ProductBestCard extends StatelessWidget {
-  const ProductBestCard({super.key, required this.models});
+  const ProductBestCard({super.key, required this.book});
 
-  final ProductBest models;
+  final Product book;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        pushToWithExtra(context, Routes.details, extra:  models);
+        pushToWithExtra(context, Routes.details, extra: book);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -50,22 +32,41 @@ class ProductBestCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Center(
-                  child: ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(10),
-                    child: Image.asset(
-                      models.image,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
+                  child: Hero(
+                    tag: book.id ?? '',
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: CachedNetworkImage(
+                        imageUrl: book.image ?? '',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        errorWidget: (context, error, stackTrace) => Image.asset(
+                          AppImages.welcomepng,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-              Gap(5),
-              Text(models.name, style: TextStyles.styleSize18()),
+              Gap(10),
+              SizedBox(
+                height: 45,
+                child: Text(
+                  book.name ?? '',
+                  style: TextStyles.styleSize18(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
               Gap(23),
               Row(
                 children: [
-                  Text('₹${models.price}', style: TextStyles.styleSize16()),
+                  Text(
+                    '₹${book.priceAfterDiscount}',
+                    style: TextStyles.styleSize16(),
+                  ),
                   const Spacer(),
                   MainButton(
                     title: 'Buy',

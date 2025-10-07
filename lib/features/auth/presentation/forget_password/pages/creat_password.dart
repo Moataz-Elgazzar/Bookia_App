@@ -36,7 +36,8 @@ class _CreatPasswordState extends State<CreatPassword> {
             showDialog(
               context: context,
               barrierDismissible: false,
-              builder: (context) => const Center(child: CircularProgressIndicator()),
+              builder: (context) =>
+                  const Center(child: CircularProgressIndicator()),
             );
           } else if (state is AuthSuccessState) {
             pop(context);
@@ -44,7 +45,9 @@ class _CreatPasswordState extends State<CreatPassword> {
             pushAndRemoveUntil(context, Routes.passwordChanged);
           } else if (state is AuthErrorState) {
             pop(context);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.message)));
           }
         },
         child: Padding(
@@ -57,7 +60,10 @@ class _CreatPasswordState extends State<CreatPassword> {
                 children: [
                   Text('Create new password', style: TextStyles.styleSize30()),
                   Gap(10),
-                  Text('Your new password must be unique from those\npreviously used.', style: TextStyles.styleSize16(color: AppColors.greyColor)),
+                  Text(
+                    'Your new password must be unique from those\npreviously used.',
+                    style: TextStyles.styleSize16(color: AppColors.greyColor),
+                  ),
                   Gap(30),
                   CustomeTextFormField(
                     obscureText: cubit.isNewPasswordVisible,
@@ -76,7 +82,8 @@ class _CreatPasswordState extends State<CreatPassword> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              cubit.isNewPasswordVisible = !cubit.isNewPasswordVisible;
+                              cubit.isNewPasswordVisible =
+                                  !cubit.isNewPasswordVisible;
                             });
                           },
                           child: SvgPicture.asset(AppImages.eyesvg),
@@ -105,7 +112,8 @@ class _CreatPasswordState extends State<CreatPassword> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              cubit.isConfirmNewPasswordVisible = !cubit.isConfirmNewPasswordVisible;
+                              cubit.isConfirmNewPasswordVisible =
+                                  !cubit.isConfirmNewPasswordVisible;
                             });
                           },
                           child: SvgPicture.asset(AppImages.eyesvg),

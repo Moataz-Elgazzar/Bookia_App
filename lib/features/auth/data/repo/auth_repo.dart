@@ -13,7 +13,10 @@ import 'package:bookia/features/auth/data/models/auth_response_reset_password/au
 class AuthRepo {
   static Future<AuthResponse?> register(AuthParams params) async {
     try {
-      var res = await DioProvider.post(path: Endpoint.register, data: params.toJson());
+      var res = await DioProvider.post(
+        path: Endpoint.register,
+        data: params.toJson(),
+      );
       if (res.statusCode == 201) {
         var body = res.data;
         return AuthResponse.fromJson(body);
@@ -28,7 +31,10 @@ class AuthRepo {
 
   static Future<AuthResponseLogin?> login(AuthParams params) async {
     try {
-      var res = await DioProvider.post(path: Endpoint.login, data: params.toJson());
+      var res = await DioProvider.post(
+        path: Endpoint.login,
+        data: params.toJson(),
+      );
       if (res.statusCode == 200) {
         var body = res.data;
         var saveUserdata = AuthResponseLogin.fromJson(body);
@@ -44,9 +50,14 @@ class AuthRepo {
     }
   }
 
-  static Future<AuthResponseForgetPassword?> forgetpassword(String email) async {
+  static Future<AuthResponseForgetPassword?> forgetpassword(
+    String email,
+  ) async {
     try {
-      var res = await DioProvider.post(path: Endpoint.forget, data: {"email": email});
+      var res = await DioProvider.post(
+        path: Endpoint.forget,
+        data: {"email": email},
+      );
       if (res.statusCode == 200) {
         var body = res.data;
         return AuthResponseForgetPassword.fromJson(body);
@@ -61,7 +72,10 @@ class AuthRepo {
 
   static Future<AuthResponseOtp?> otp(String email, int code) async {
     try {
-      var res = await DioProvider.post(path: Endpoint.otp, data: {"email": email, "verify_code": code});
+      var res = await DioProvider.post(
+        path: Endpoint.otp,
+        data: {"email": email, "verify_code": code},
+      );
       if (res.statusCode == 200) {
         var body = res.data;
         return AuthResponseOtp.fromJson(body);
@@ -74,9 +88,20 @@ class AuthRepo {
     }
   }
 
-  static Future<AuthResponseResetPassword?> resetPassword(int code, String newPassword, String newPasswordConfirmation) async {
+  static Future<AuthResponseResetPassword?> resetPassword(
+    int code,
+    String newPassword,
+    String newPasswordConfirmation,
+  ) async {
     try {
-      var res = await DioProvider.post(path: Endpoint.resetPassword, data: {"verify_code": code, "new_password": newPassword, "new_password_confirmation": newPasswordConfirmation});
+      var res = await DioProvider.post(
+        path: Endpoint.resetPassword,
+        data: {
+          "verify_code": code,
+          "new_password": newPassword,
+          "new_password_confirmation": newPasswordConfirmation,
+        },
+      );
       if (res.statusCode == 200) {
         var body = res.data;
         return AuthResponseResetPassword.fromJson(body);

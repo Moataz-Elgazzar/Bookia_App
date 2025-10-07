@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     Future.delayed(Duration(seconds: 3), () {
       if (user != null) {
-        pushAndRemoveUntil(context, Routes.home);
+        pushAndRemoveUntil(context, Routes.mainscreen);
       } else {
         pushAndRemoveUntil(context, Routes.welcome);
       }

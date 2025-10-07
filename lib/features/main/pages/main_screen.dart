@@ -1,7 +1,7 @@
 import 'package:bookia/core/constants/app_images.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/features/cart/pages/cart_screen.dart';
-import 'package:bookia/features/home/pages/home_screen.dart';
+import 'package:bookia/features/home/presentation/pages/home_screen.dart';
 import 'package:bookia/features/profile/pages/profile_screen.dart';
 import 'package:bookia/features/wishlist/pages/wishlist_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +15,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Widget> screen = [
-    HomeScreen(),
-    WishlistScreen(),
-    CartScreen(),
-    ProfileScreen(),
-  ];
+  List<Widget> screen = [HomeScreen(), WishlistScreen(), CartScreen(), ProfileScreen()];
 
   int currentIndex = 0;
 
@@ -28,54 +23,33 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screen[currentIndex],
-      bottomNavigationBar: NavigationBarTheme(
-        data: NavigationBarThemeData(
-          height: 50,
-          indicatorColor: Colors.transparent,
-          overlayColor: WidgetStateProperty.all(Colors.transparent),
-        ),
-        child: NavigationBar(
-          selectedIndex: currentIndex,
-          onDestinationSelected: (index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-
-          backgroundColor: AppColors.wightColor,
-          elevation: 0,
-          destinations: [
-            NavigationDestination(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: SvgPicture.asset(AppImages.homesvg),
-              ),
-              label: '',
-            ),
-            NavigationDestination(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: SvgPicture.asset(AppImages.bookmarksvg),
-              ),
-              label: '',
-            ),
-            NavigationDestination(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: SvgPicture.asset(AppImages.cartsvg),
-              ),
-              label: '',
-            ),
-            NavigationDestination(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: SvgPicture.asset(AppImages.profile),
-              ),
-              label: '',
-            ),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        elevation: 0,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        backgroundColor: AppColors.wightColor,
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: [
+          _buildNavigationBarItem(iconPath: AppImages.homesvg, label: 'Home'),
+          _buildNavigationBarItem(iconPath: AppImages.bookmarksvg, label: 'Wishlist'),
+          _buildNavigationBarItem(iconPath: AppImages.cartsvg, label: 'Cart'),
+          _buildNavigationBarItem(iconPath: AppImages.profile, label: 'Profile'),
+        ],
       ),
+    );
+  }
+
+  BottomNavigationBarItem _buildNavigationBarItem({required String iconPath, required String label}) {
+    return BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(iconPath, colorFilter: ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn)),
+      icon: SvgPicture.asset(iconPath),
+      label: label,
     );
   }
 }

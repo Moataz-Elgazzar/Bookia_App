@@ -22,7 +22,14 @@ class AuthCubit extends Cubit<AuthState> {
 
   register() async {
     emit(AuthLoadingState());
-    var res = await AuthRepo.register(AuthParams(name: userNameController.text, email: emailController.text, password: passwordController.text, passwordConfirmation: confirmPasswordController.text));
+    var res = await AuthRepo.register(
+      AuthParams(
+        name: userNameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+        passwordConfirmation: confirmPasswordController.text,
+      ),
+    );
     if (res != null && res.status == 201) {
       emit(AuthSuccessState());
     } else {
@@ -32,7 +39,12 @@ class AuthCubit extends Cubit<AuthState> {
 
   login() async {
     emit(AuthLoadingState());
-    var res = await AuthRepo.login(AuthParams(email: emailController.text, password: passwordController.text));
+    var res = await AuthRepo.login(
+      AuthParams(
+        email: emailController.text,
+        password: passwordController.text,
+      ),
+    );
     if (res != null && res.status == 200) {
       emit(AuthSuccessState());
     } else {
@@ -52,7 +64,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   otp() async {
     emit(AuthLoadingState());
-    var res = await AuthRepo.otp(emailController.text, int.parse(pinController.text));
+    var res = await AuthRepo.otp(
+      emailController.text,
+      int.parse(pinController.text),
+    );
     if (res != null && res.status == 200) {
       emit(AuthSuccessState());
     } else {
@@ -62,7 +77,11 @@ class AuthCubit extends Cubit<AuthState> {
 
   resetPassword(int code) async {
     emit(AuthLoadingState());
-    var res = await AuthRepo.resetPassword(code, newPasswordController.text, confirmNewPasswordController.text);
+    var res = await AuthRepo.resetPassword(
+      code,
+      newPasswordController.text,
+      confirmNewPasswordController.text,
+    );
     if (res != null && res.status == 200) {
       emit(AuthSuccessState());
     } else {
