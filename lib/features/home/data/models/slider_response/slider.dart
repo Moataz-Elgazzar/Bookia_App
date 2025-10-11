@@ -4,7 +4,7 @@ class SliderModel {
   SliderModel({this.image});
 
   factory SliderModel.fromJson(Map<String, dynamic> json) =>
-     SliderModel(image: json['image'] as String?);
+      SliderModel(image: json['image'] as String?);
 
   Map<String, dynamic> toJson() => {'image': image};
 }

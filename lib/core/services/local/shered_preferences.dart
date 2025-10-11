@@ -7,6 +7,7 @@ class SheredPreferences {
   static late SharedPreferences prefs;
 
   static const String kUserData = "userData";
+  static const String kWishlist = "wishlist";
 
   static init() async {
     prefs = await SharedPreferences.getInstance();
@@ -28,6 +29,24 @@ class SheredPreferences {
     }
     var stringToJson = jsonDecode(stringData);
     return Data.fromJson(stringToJson);
+  }
+
+  static saveWishList(List<int> whishlistIds) {
+    List<String> wishlistTostring = [];
+    for (var id in whishlistIds) {
+      wishlistTostring.add(id.toString());
+    }
+    setData(kWishlist, wishlistTostring);
+  }
+
+  static List<int>? getWishlist() {
+    List<String>? wishlistTostring = getdata(kWishlist);
+    if (wishlistTostring == null) return null;
+    List<int> wishlistToInt = [];
+    for (var id in wishlistTostring) {
+      wishlistToInt.add(int.tryParse(id) ?? 0);
+    }
+    return wishlistToInt;
   }
 
   static setData(String key, dynamic value) {

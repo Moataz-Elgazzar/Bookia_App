@@ -15,6 +15,7 @@
   <img src="home.png" width="150" /> 
   <img src="details.png" width="150" /> 
   <img src="wishlist.png" width="150" /> 
+  <img src="search.png" width="150" /> 
   <img src="cart.png" width="150" /> 
 </p>
 

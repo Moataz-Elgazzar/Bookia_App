@@ -1,9 +1,11 @@
+import 'package:bookia/core/services/local/shered_preferences.dart';
 import 'package:bookia/features/home/data/models/best_seller_response/best_seller_response.dart';
 import 'package:bookia/features/home/data/models/best_seller_response/product.dart';
 import 'package:bookia/features/home/data/models/slider_response/slider.dart';
 import 'package:bookia/features/home/data/models/slider_response/slider_response.dart';
 import 'package:bookia/features/home/data/repo/home_repo.dart';
 import 'package:bookia/features/home/presentation/cubit/home_state.dart';
+import 'package:bookia/features/wishlist/data/repo/wishlist_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -14,7 +16,10 @@ class HomeCubit extends Cubit<HomeState> {
 
   getData() async {
     emit(HomeLoadingState());
-    var result = await Future.wait([HomeRepo.getBestSeller(), HomeRepo.getSlider()]);
+    var result = await Future.wait([
+      HomeRepo.getBestSeller(),
+      HomeRepo.getSlider(),
+    ]);
 
     var bestSellerRes = result[0] as BestSellerResponse?;
     var sliderRes = result[1] as SliderResponse?;
@@ -26,5 +31,29 @@ class HomeCubit extends Cubit<HomeState> {
     } else {
       emit(HomeErrorState());
     }
+  }
+
+  addAndRemoveTowishList({required int productId}) async {
+    emit(HomeLoadingState());
+    if (cachedIfWishlist(productId)) {
+      var res = await WishlistRepo.removeWishlist(productId: productId);
+      if (res != null) {
+        emit(HomeSuccessState(message: 'Removed from Wishlist'));
+      } else {
+        emit(HomeErrorState());
+      }
+    } else {
+      var res = await WishlistRepo.addWishlist(productId: productId);
+      if (res != null) {
+        emit(HomeSuccessState(message: 'Added to Wishlist'));
+      } else {
+        emit(HomeErrorState());
+      }
+    }
+  }
+
+  bool cachedIfWishlist(int productId) {
+    var cached = SheredPreferences.getWishlist();
+    return cached?.contains(productId) ?? false;
   }
 }

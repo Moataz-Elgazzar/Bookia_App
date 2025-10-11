@@ -7,4 +7,9 @@ class Endpoint {
   static const String resetPassword = '/reset-password';
   static const String productBestSeller = '/products-bestseller';
   static const String slider = '/sliders';
+  static const String addWishlist = '/add-to-wishlist';
+  static const String removeWishlist = '/remove-from-wishlist';
+  static const String getWishlist = '/wishlist';
+  static const String getBookDetails = '/products';
+  static const String getSearchBook = '/products-search';
 }

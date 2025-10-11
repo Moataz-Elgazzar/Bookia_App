@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
-class ProductCardShimmer extends StatelessWidget {
-  const ProductCardShimmer({super.key, this.books});
+class ProductCardSearchShimmer extends StatelessWidget {
+  const ProductCardSearchShimmer({super.key, this.books});
 
   final List<Product>? books;
 
@@ -23,22 +23,14 @@ class ProductCardShimmer extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                height: 150,
+                height: 51,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade300,
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              const Gap(52),
-              Container(
-                width: 100,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              const Gap(15),
+
+              const Gap(24),
               GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,

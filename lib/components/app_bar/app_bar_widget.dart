@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({super.key, this.image});
 
-  final SvgPicture? image;
+  final Widget? image;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             child: SvgPicture.asset(AppImages.backsvg),
           ),
 
-          if (image != null) GestureDetector(onTap: () {}, child: image),
+          if (image != null) image!,
         ],
       ),
     );

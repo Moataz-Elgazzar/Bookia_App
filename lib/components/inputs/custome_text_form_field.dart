@@ -9,17 +9,21 @@ class CustomeTextFormField extends StatelessWidget {
     required this.controller,
     this.validator,
     this.obscureText = false,
+    this.prefix, this.onChanged,
   });
 
   final String title;
   final Widget? suffix;
+  final Widget? prefix;
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final bool obscureText;
+  final Function(String)? onChanged ;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
       validator: validator,
       obscureText: obscureText,
       maxLines: 1,
@@ -28,6 +32,7 @@ class CustomeTextFormField extends StatelessWidget {
         fillColor: AppColors.inputColor,
         filled: true,
         suffixIcon: suffix,
+        prefixIcon: prefix,
       ),
       controller: controller,
     );

@@ -5,7 +5,10 @@ import 'package:bookia/features/auth/presentation/forget_password/pages/otp_scre
 import 'package:bookia/features/auth/presentation/forget_password/pages/password_changed_screen.dart';
 import 'package:bookia/features/auth/presentation/login/pages/login_screen.dart';
 import 'package:bookia/features/auth/presentation/register/pages/register_screen.dart';
+import 'package:bookia/features/book_details/presentation/cubit/book_details_cubit.dart';
+import 'package:bookia/features/book_details/presentation/pages/book_details.dart';
 import 'package:bookia/features/home/data/models/best_seller_response/product.dart';
+import 'package:bookia/features/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia/features/home/presentation/pages/details_screen.dart';
 import 'package:bookia/features/home/presentation/pages/home_screen.dart';
 import 'package:bookia/features/main/pages/main_screen.dart';
@@ -26,6 +29,7 @@ class Routes {
   static const String home = '/home';
   static const String details = '/details';
   static const String mainscreen = '/mainscreen';
+  static const String bookdetails = '/bookdetails';
 
   static GoRouter route = GoRouter(
     routes: [
@@ -81,15 +85,25 @@ class Routes {
       ),
       GoRoute(path: home, builder: (context, state) => const HomeScreen()),
       GoRoute(
-      path: details,
-      builder: (context, state) {
-       final product = state.extra as Product;
-       return DetailsScreen(book: product);
-       },
+        path: details,
+        builder: (context, state) {
+          final product = state.extra as Product;
+          return BlocProvider(
+            create: (context) => HomeCubit(),
+            child: DetailsScreen(book: product),
+          );
+        },
       ),
       GoRoute(
         path: mainscreen,
         builder: (context, state) => const MainScreen(),
+      ),
+      GoRoute(
+        path: bookdetails,
+        builder: (context, state) => BlocProvider(
+          create: (context) => BookDetailsCubit()..getBookDetails(),
+          child: const BookDetails(),
+        ),
       ),
     ],
   );

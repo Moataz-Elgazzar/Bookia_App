@@ -1,4 +1,6 @@
 import 'package:bookia/core/constants/app_images.dart';
+import 'package:bookia/core/routes/navigator.dart';
+import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_style.dart';
 import 'package:bookia/core/widgets/shimmer.dart';
@@ -34,7 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SvgPicture.asset(AppImages.logosvg, width: 99, height: 30),
-              IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded, size: 35)),
+              IconButton(
+                onPressed: () {
+                  pushTo(context, Routes.bookdetails);
+                },
+                icon: Icon(Icons.search_rounded, size: 35),
+              ),
             ],
           ),
         ),
@@ -54,7 +61,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index, realindex) {
                         return ClipRRect(
                           borderRadius: BorderRadiusGeometry.circular(10),
-                          child: CachedNetworkImage(imageUrl: cubit.sliders?[index].image ?? '', fit: BoxFit.fill, width: double.infinity),
+                          child: CachedNetworkImage(
+                            imageUrl: cubit.sliders?[index].image ?? '',
+                            fit: BoxFit.fill,
+                            width: double.infinity,
+                          ),
                         );
                       },
                       options: CarouselOptions(
@@ -72,14 +83,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(cubit.sliders?.length ?? 3, (index) {
+                      children: List.generate(cubit.sliders?.length ?? 3, (
+                        index,
+                      ) {
                         bool isActive = index == activeIndex;
                         return AnimatedContainer(
                           duration: const Duration(microseconds: 300),
                           margin: const EdgeInsets.symmetric(horizontal: 4),
                           width: isActive ? 30 : 10,
                           height: 10,
-                          decoration: BoxDecoration(color: isActive ? AppColors.primaryColor : AppColors.greyColor, borderRadius: BorderRadius.circular(20)),
+                          decoration: BoxDecoration(
+                            color: isActive
+                                ? AppColors.primaryColor
+                                : AppColors.greyColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         );
                       }),
                     ),
