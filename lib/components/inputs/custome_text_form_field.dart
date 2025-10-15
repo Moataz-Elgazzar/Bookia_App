@@ -9,7 +9,8 @@ class CustomeTextFormField extends StatelessWidget {
     required this.controller,
     this.validator,
     this.obscureText = false,
-    this.prefix, this.onChanged,
+    this.prefix,
+    this.onChanged,
   });
 
   final String title;
@@ -18,7 +19,7 @@ class CustomeTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final bool obscureText;
-  final Function(String)? onChanged ;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {

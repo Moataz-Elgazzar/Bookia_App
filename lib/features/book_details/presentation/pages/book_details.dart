@@ -43,11 +43,22 @@ class _BookDetailsState extends State<BookDetails> {
                   },
                   title: 'Search Store',
                   controller: cubit.searchController,
-                  prefix: Icon(Icons.search_rounded, color: AppColors.darkColor, size: 30),
+                  prefix: Icon(
+                    Icons.search_rounded,
+                    color: AppColors.darkColor,
+                    size: 30,
+                  ),
                 ),
                 Gap(24),
                 Expanded(
-                  child: cubit.searchResault() ? Center(child: Text('Book Not Found', style: TextStyles.styleSize16())) : BookDetailsWidget(books: cubit.displayProduct()),
+                  child: cubit.searchResault()
+                      ? Center(
+                          child: Text(
+                            'Book Not Found',
+                            style: TextStyles.styleSize16(),
+                          ),
+                        )
+                      : BookDetailsWidget(books: cubit.displayProduct()),
                 ),
               ],
             ),

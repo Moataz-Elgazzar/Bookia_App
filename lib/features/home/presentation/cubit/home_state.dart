@@ -9,4 +9,7 @@ class HomeSuccessState extends HomeState {
   HomeSuccessState({this.message});
 }
 
-class HomeErrorState extends HomeState {}
+class HomeErrorState extends HomeState {
+  String? message;
+  HomeErrorState(this.message);
+}

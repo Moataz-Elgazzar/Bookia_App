@@ -11,16 +11,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 class WishListCard extends StatelessWidget {
-  const WishListCard({
-    super.key,
-    required this.book,
-    required this.onDelete,
-    required this.onRefresh,
-  });
+  const WishListCard({super.key, required this.book, required this.onDelete, required this.onRefresh, required this.onPressed});
 
   final WishListProduct book;
   final Function() onDelete;
   final Function() onRefresh;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +24,7 @@ class WishListCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: GestureDetector(
         onTap: () {
-          pushTo(context, Routes.details, extra: book.mapToProduct()).then((
-            value,
-          ) {
+          pushTo(context, Routes.details, extra: book.mapToProduct()).then((value) {
             onRefresh();
           });
         },
@@ -39,12 +33,7 @@ class WishListCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                CachedNetworkImage(
-                  imageUrl: book.image ?? '',
-                  fit: BoxFit.contain,
-                  height: 130,
-                  width: 100,
-                ),
+                CachedNetworkImage(imageUrl: book.image ?? '', fit: BoxFit.contain, height: 130, width: 100),
                 Gap(20),
                 Expanded(
                   child: Column(
@@ -53,17 +42,9 @@ class WishListCard extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(
-                              book.name ?? '',
-                              style: TextStyles.styleSize18(
-                                color: AppColors.greyColor,
-                              ),
-                            ),
+                            child: Text(book.name ?? '', style: TextStyles.styleSize18(color: AppColors.greyColor)),
                           ),
-                          GestureDetector(
-                            onTap: onDelete,
-                            child: SvgPicture.asset(AppImages.shape),
-                          ),
+                          GestureDetector(onTap: onDelete, child: SvgPicture.asset(AppImages.shape)),
                         ],
                       ),
                       Gap(10),
@@ -71,12 +52,7 @@ class WishListCard extends StatelessWidget {
                       Gap(25),
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: MainButton(
-                          title: 'Add To Cart',
-                          onPressed: () {},
-                          width: 181.78,
-                          height: 40,
-                        ),
+                        child: MainButton(title: 'Add To Cart', onPressed: onPressed, width: 181.78, height: 40),
                       ),
                     ],
                   ),

@@ -35,10 +35,7 @@ class DetailsScreen extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               duration: Duration(milliseconds: 500),
-              content: Text(
-                state.message ?? '',
-                style: TextStyles.styleSize16(color: AppColors.wightColor),
-              ),
+              content: Text(state.message ?? '', style: TextStyles.styleSize16(color: AppColors.wightColor)),
               backgroundColor: AppColors.primaryColor,
               behavior: SnackBarBehavior.floating,
             ),
@@ -47,10 +44,7 @@ class DetailsScreen extends StatelessWidget {
           pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(
-                'Not Added to wishlist',
-                style: TextStyles.styleSize16(color: AppColors.wightColor),
-              ),
+              content: Text('Not Added to wishlist', style: TextStyles.styleSize16(color: AppColors.wightColor)),
               backgroundColor: AppColors.redColor,
               behavior: SnackBarBehavior.floating,
             ),
@@ -64,15 +58,7 @@ class DetailsScreen extends StatelessWidget {
               onTap: () {
                 cubit.addAndRemoveTowishList(productId: book.id ?? 0);
               },
-              child: cubit.cachedIfWishlist(book.id ?? 0)
-                  ? SvgPicture.asset(
-                      AppImages.bookmarksvg,
-                      colorFilter: ColorFilter.mode(
-                        AppColors.primaryColor,
-                        BlendMode.srcIn,
-                      ),
-                    )
-                  : SvgPicture.asset(AppImages.bookmarksvg),
+              child: cubit.cachedIfWishlist(book.id ?? 0) ? SvgPicture.asset(AppImages.bookmarksvg, colorFilter: ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn)) : SvgPicture.asset(AppImages.bookmarksvg),
             ),
           ),
           body: SingleChildScrollView(
@@ -84,25 +70,13 @@ class DetailsScreen extends StatelessWidget {
                   children: [
                     Hero(
                       tag: book.id ?? '',
-                      child: CachedNetworkImage(
-                        imageUrl: book.image ?? '',
-                        height: 200,
-                      ),
+                      child: CachedNetworkImage(imageUrl: book.image ?? '', height: 200),
                     ),
                     const Gap(11),
                     Text(book.name ?? '', style: TextStyles.styleSize30()),
-                    Text(
-                      book.category ?? '',
-                      style: TextStyles.styleSize16(
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
+                    Text(book.category ?? '', style: TextStyles.styleSize16(color: AppColors.primaryColor)),
                     const Gap(16),
-                    Text(
-                      book.description ?? '',
-                      style: TextStyles.styleSize14(),
-                      textAlign: TextAlign.justify,
-                    ),
+                    Text(book.description ?? '', style: TextStyles.styleSize14(), textAlign: TextAlign.justify),
                   ],
                 ),
               ),
@@ -113,14 +87,13 @@ class DetailsScreen extends StatelessWidget {
             child: SafeArea(
               child: Row(
                 children: [
-                  Text(
-                    '₹${book.priceAfterDiscount}',
-                    style: TextStyles.styleSize24(),
-                  ),
+                  Text('₹${book.priceAfterDiscount}', style: TextStyles.styleSize24()),
                   const Spacer(),
                   MainButton(
                     title: 'Add To Cart',
-                    onPressed: () {},
+                    onPressed: () {
+                      cubit.addToCart(productId: book.id ?? 0);
+                    },
                     backgroundColor: AppColors.darkColor,
                     textColor: AppColors.wightColor,
                     width: 212,

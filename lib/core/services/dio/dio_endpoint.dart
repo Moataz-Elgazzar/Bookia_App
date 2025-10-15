@@ -12,4 +12,8 @@ class Endpoint {
   static const String getWishlist = '/wishlist';
   static const String getBookDetails = '/products';
   static const String getSearchBook = '/products-search';
+  static const String getcart = '/cart';
+  static const String addToCart = '/add-to-cart';
+  static const String updateToCart = '/update-cart';
+  static const String removeFromCart = '/remove-from-cart';
 }

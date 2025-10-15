@@ -1,4 +1,5 @@
 import 'package:bookia/core/services/local/shered_preferences.dart';
+import 'package:bookia/features/cart/data/repo/cart_repo.dart';
 import 'package:bookia/features/home/data/models/best_seller_response/best_seller_response.dart';
 import 'package:bookia/features/home/data/models/best_seller_response/product.dart';
 import 'package:bookia/features/home/data/models/slider_response/slider.dart';
@@ -16,10 +17,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   getData() async {
     emit(HomeLoadingState());
-    var result = await Future.wait([
-      HomeRepo.getBestSeller(),
-      HomeRepo.getSlider(),
-    ]);
+    var result = await Future.wait([HomeRepo.getBestSeller(), HomeRepo.getSlider()]);
 
     var bestSellerRes = result[0] as BestSellerResponse?;
     var sliderRes = result[1] as SliderResponse?;
@@ -29,7 +27,7 @@ class HomeCubit extends Cubit<HomeState> {
       sliders = sliderRes?.data?.sliders ?? [];
       emit(HomeSuccessState());
     } else {
-      emit(HomeErrorState());
+      emit(HomeErrorState('Somthig Wrong'));
     }
   }
 
@@ -40,15 +38,25 @@ class HomeCubit extends Cubit<HomeState> {
       if (res != null) {
         emit(HomeSuccessState(message: 'Removed from Wishlist'));
       } else {
-        emit(HomeErrorState());
+        emit(HomeErrorState('Not Removed to Wishlist'));
       }
     } else {
       var res = await WishlistRepo.addWishlist(productId: productId);
       if (res != null) {
         emit(HomeSuccessState(message: 'Added to Wishlist'));
       } else {
-        emit(HomeErrorState());
+        emit(HomeErrorState('Added to Wishlist'));
       }
+    }
+  }
+
+  addToCart({required int productId}) async {
+    emit(HomeLoadingState());
+    var res = await CartRepo.addToCart(productId: productId);
+    if (res != null) {
+      emit(HomeSuccessState(message: 'Added to Cart'));
+    } else {
+      emit(HomeErrorState('Not Added to Cart'));
     }
   }
 

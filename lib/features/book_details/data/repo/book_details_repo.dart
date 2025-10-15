@@ -22,7 +22,10 @@ class BookDetailsRepo {
 
   static Future<SearchBookResponse?> getSearchBook(String name) async {
     try {
-      var res = await DioProvider.get(path: Endpoint.getSearchBook, queryParameters: {'name': name});
+      var res = await DioProvider.get(
+        path: Endpoint.getSearchBook,
+        queryParameters: {'name': name},
+      );
       if (res.statusCode == 200) {
         return SearchBookResponse.fromJson(res.data);
       } else {

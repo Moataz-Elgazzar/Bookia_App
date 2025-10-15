@@ -2,7 +2,6 @@ import 'links.dart';
 import 'meta.dart';
 import 'package:bookia/features/book_details/data/models/product.dart';
 
-
 class Data {
   List<BookProduct>? products;
   Meta? meta;

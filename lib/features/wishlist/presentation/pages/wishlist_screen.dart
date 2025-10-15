@@ -16,10 +16,7 @@ class WishlistScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => WishlistCubit()..getWishlist(),
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text('Wishlist', style: TextStyles.styleSize24()),
-        ),
+        appBar: AppBar(automaticallyImplyLeading: false, title: Text('Wishlist', style: TextStyles.styleSize24())),
         body: BlocBuilder<WishlistCubit, WishlistState>(
           builder: (context, state) {
             var cubit = context.read<WishlistCubit>();
@@ -31,19 +28,9 @@ class WishlistScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset(
-                      AppImages.bookmarksvg,
-                      height: 100,
-                      colorFilter: ColorFilter.mode(
-                        AppColors.primaryColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
+                    SvgPicture.asset(AppImages.bookmarksvg, height: 100, colorFilter: ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn)),
                     Gap(10),
-                    Text(
-                      'Add Books to Wishlist',
-                      style: TextStyles.styleSize16(),
-                    ),
+                    Text('Add Books to Wishlist', style: TextStyles.styleSize16()),
                   ],
                 ),
               );
@@ -54,12 +41,13 @@ class WishlistScreen extends StatelessWidget {
                 return WishListCard(
                   book: cubit.books[index],
                   onDelete: () {
-                    cubit.removeFromWishList(
-                      productId: cubit.books[index].id ?? 0,
-                    );
+                    cubit.removeFromWishList(productId: cubit.books[index].id ?? 0);
                   },
                   onRefresh: () {
                     cubit.getWishlist();
+                  },
+                  onPressed: () {
+                    cubit.addToCart(productId: cubit.books[index].id ?? 0);
                   },
                 );
               },

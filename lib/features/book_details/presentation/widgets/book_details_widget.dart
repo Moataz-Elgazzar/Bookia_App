@@ -12,7 +12,12 @@ class BookDetailsWidget extends StatelessWidget {
     return GridView.builder(
       physics: ClampingScrollPhysics(),
 
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisExtent: 281, crossAxisSpacing: 11, mainAxisSpacing: 11),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisExtent: 281,
+        crossAxisSpacing: 11,
+        mainAxisSpacing: 11,
+      ),
       itemBuilder: (context, index) {
         return BookDetailsCard(book: books[index]);
       },

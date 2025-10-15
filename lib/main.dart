@@ -10,7 +10,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioProvider.init();
   await SheredPreferences.init();
-  runApp(DevicePreview(enabled: !kReleaseMode, builder: (BuildContext context) => const MainApp()));
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (BuildContext context) => const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -18,6 +23,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: Routes.route, debugShowCheckedModeBanner: false, theme: AppTheme.lightTheme);
+    return MaterialApp.router(
+      routerConfig: Routes.route,
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+    );
   }
 }

@@ -10,10 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class BookDetailsCard extends StatelessWidget {
-  const BookDetailsCard({super.key, required this.book, });
+  const BookDetailsCard({super.key, required this.book});
 
   final BookProduct book;
-  
 
   @override
   Widget build(BuildContext context) {
