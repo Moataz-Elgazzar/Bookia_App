@@ -75,10 +75,10 @@ class CartCubit extends Cubit<CartState> {
   }
 
   refillData() {
-    nameController.text = SheredPreferences.getdata('user_name');
-    emailController.text = SheredPreferences.getdata('user_email');
-    phoneController.text = SheredPreferences.getdata('user_phone');
-    addressController.text = SheredPreferences.getdata('user_address');
-    selcetGovId = SheredPreferences.getdata('user_governorate_id');
+    nameController.text = SheredPreferences.getdata('user_name') ?? '';
+    emailController.text = SheredPreferences.getdata('user_email') ?? '';
+    phoneController.text = SheredPreferences.getdata('user_phone') ?? '';
+    addressController.text = SheredPreferences.getdata('user_address') ?? '';
+    selcetGovId = SheredPreferences.getdata('user_governorate_id') ?? '';
   }
 }

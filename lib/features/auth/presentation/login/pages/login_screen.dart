@@ -38,12 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
             );
           } else if (state is AuthSuccessState) {
             pop(context);
-            pushWithReplacement(context, Routes.home);
+            pushWithReplacement(context, Routes.mainscreen);
           } else if (state is AuthErrorState) {
             pop(context);
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.message)));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
           }
         },
         child: Padding(
@@ -54,10 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Welcome back! Glad\nto see you, Again!',
-                    style: TextStyles.styleSize30(),
-                  ),
+                  Text('Welcome back! Glad\nto see you, Again!', style: TextStyles.styleSize30()),
                   Gap(32),
                   CustomeTextFormField(
                     title: 'Enter your email',
@@ -81,8 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              cubit.isPasswordVisible =
-                                  !cubit.isPasswordVisible;
+                              cubit.isPasswordVisible = !cubit.isPasswordVisible;
                             });
                           },
                           child: SvgPicture.asset(AppImages.eyesvg),
@@ -99,17 +93,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      style: TextButton.styleFrom(
-                        overlayColor: Colors.transparent,
-                        padding: EdgeInsets.all(0),
-                      ),
+                      style: TextButton.styleFrom(overlayColor: Colors.transparent, padding: EdgeInsets.all(0)),
                       onPressed: () {
                         pushWithReplacement(context, Routes.forgetPassword);
                       },
-                      child: Text(
-                        'Forgot Password?',
-                        style: TextStyles.styleSize14(),
-                      ),
+                      child: Text('Forgot Password?', style: TextStyles.styleSize14()),
                     ),
                   ),
                   Gap(30),
@@ -124,15 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   Gap(34),
                   SocialWidget(),
                   Gap(21),
-                  GoogleAndApple(
-                    title: 'Google',
-                    image: SvgPicture.asset(AppImages.googlesvg),
-                  ),
+                  GoogleAndApple(title: 'Google', image: SvgPicture.asset(AppImages.googlesvg)),
                   Gap(15),
-                  GoogleAndApple(
-                    title: 'Apple',
-                    image: SvgPicture.asset(AppImages.applesvg),
-                  ),
+                  GoogleAndApple(title: 'Apple', image: SvgPicture.asset(AppImages.applesvg)),
                 ],
               ),
             ),
@@ -148,10 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
             onPressed: () {
               pushWithReplacement(context, Routes.register);
             },
-            child: Text(
-              'Register Now',
-              style: TextStyles.styleSize14(color: AppColors.primaryColor),
-            ),
+            child: Text('Register Now', style: TextStyles.styleSize14(color: AppColors.primaryColor)),
           ),
         ],
       ),
