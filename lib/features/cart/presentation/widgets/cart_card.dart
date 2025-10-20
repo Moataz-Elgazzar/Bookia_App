@@ -16,8 +16,6 @@ class CartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int count = 1;
-
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(

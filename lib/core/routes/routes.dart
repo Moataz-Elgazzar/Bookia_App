@@ -7,11 +7,16 @@ import 'package:bookia/features/auth/presentation/login/pages/login_screen.dart'
 import 'package:bookia/features/auth/presentation/register/pages/register_screen.dart';
 import 'package:bookia/features/book_details/presentation/cubit/book_details_cubit.dart';
 import 'package:bookia/features/book_details/presentation/pages/book_details.dart';
+import 'package:bookia/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:bookia/features/cart/presentation/pages/place_order.dart';
 import 'package:bookia/features/home/data/models/best_seller_response/product.dart';
 import 'package:bookia/features/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia/features/home/presentation/pages/details_screen.dart';
 import 'package:bookia/features/home/presentation/pages/home_screen.dart';
 import 'package:bookia/features/main/pages/main_screen.dart';
+import 'package:bookia/features/profile/pages/edit_profile.dart';
+import 'package:bookia/features/profile/pages/my_order.dart';
+import 'package:bookia/features/profile/pages/reset_password.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome_screen/welcome_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,34 +35,29 @@ class Routes {
   static const String details = '/details';
   static const String mainscreen = '/mainscreen';
   static const String bookdetails = '/bookdetails';
+  static const String placeOrder = '/placeOrder';
+  static const String myOrder = '/myOrder';
+  static const String editProfile = '/editProfile';
+  static const String resetPassword = '/resetPassword';
 
   static GoRouter route = GoRouter(
     routes: [
       GoRoute(path: splash, builder: (context, state) => const SplashScreen()),
-      GoRoute(
-        path: welcome,
-        builder: (context, state) => const WelcomeScreen(),
-      ),
+      GoRoute(path: myOrder, builder: (context, state) => const MyOrder()),
+      GoRoute(path: editProfile, builder: (context, state) => const EditProfile()),
+      GoRoute(path: resetPassword, builder: (context, state) => const ResetPassword()),
+      GoRoute(path: welcome, builder: (context, state) => const WelcomeScreen()),
       GoRoute(
         path: login,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(),
-          child: const LoginScreen(),
-        ),
+        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const LoginScreen()),
       ),
       GoRoute(
         path: register,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(),
-          child: const RegisterScreen(),
-        ),
+        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const RegisterScreen()),
       ),
       GoRoute(
         path: forgetPassword,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(),
-          child: const ForgetPasswordScreen(),
-        ),
+        builder: (context, state) => BlocProvider(create: (context) => AuthCubit(), child: const ForgetPasswordScreen()),
       ),
       GoRoute(
         path: otp,
@@ -79,10 +79,7 @@ class Routes {
           );
         },
       ),
-      GoRoute(
-        path: passwordChanged,
-        builder: (context, state) => const PasswordChangedScreen(),
-      ),
+      GoRoute(path: passwordChanged, builder: (context, state) => const PasswordChangedScreen()),
       GoRoute(path: home, builder: (context, state) => const HomeScreen()),
       GoRoute(
         path: details,
@@ -96,13 +93,17 @@ class Routes {
       ),
       GoRoute(
         path: mainscreen,
-        builder: (context, state) => const MainScreen(),
+        builder: (context, state) => MainScreen(index: state.extra as int?),
       ),
       GoRoute(
         path: bookdetails,
+        builder: (context, state) => BlocProvider(create: (context) => BookDetailsCubit()..getBookDetails(), child: const BookDetails()),
+      ),
+      GoRoute(
+        path: placeOrder,
         builder: (context, state) => BlocProvider(
-          create: (context) => BookDetailsCubit()..getBookDetails(),
-          child: const BookDetails(),
+          create: (context) => CartCubit()..refillData(),
+          child: PlaceOrder(total: state.extra as String),
         ),
       ),
     ],

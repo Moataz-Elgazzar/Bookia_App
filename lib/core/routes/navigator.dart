@@ -13,8 +13,8 @@ pushWithReplacement(BuildContext context, String route, {Object? extra}) {
   return context.push(route, extra: extra);
 }
 
-pushAndRemoveUntil(BuildContext context, String route) {
-  return context.go(route);
+pushAndRemoveUntil(BuildContext context, String route, {Object? extra}) {
+  return context.go(route, extra: extra);
 }
 
 pop(BuildContext context) {

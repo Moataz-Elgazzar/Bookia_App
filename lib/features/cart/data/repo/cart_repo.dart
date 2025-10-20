@@ -4,6 +4,7 @@ import 'package:bookia/core/services/dio/dio_endpoint.dart';
 import 'package:bookia/core/services/dio/dio_provider.dart';
 import 'package:bookia/core/services/local/shered_preferences.dart';
 import 'package:bookia/features/cart/data/models/cart_response/cart_response.dart';
+import 'package:bookia/features/cart/data/models/place_order.dart';
 
 class CartRepo {
   static Future<CartResponse?> getCart() async {
@@ -48,10 +49,9 @@ class CartRepo {
     }
   }
 
-
   static Future<CartResponse?> removeFromCart({required int cartItemId}) async {
     try {
-      var res = await DioProvider.post(path: Endpoint.removeFromCart, data: {"cart_item_id": cartItemId, }, headers: {"Authorization": "Bearer ${SheredPreferences.getUserData()?.token}"});
+      var res = await DioProvider.post(path: Endpoint.removeFromCart, data: {"cart_item_id": cartItemId}, headers: {"Authorization": "Bearer ${SheredPreferences.getUserData()?.token}"});
       if (res.statusCode == 201) {
         return CartResponse.fromJson(res.data);
       } else {
@@ -60,6 +60,20 @@ class CartRepo {
     } on Exception catch (e) {
       log(e.toString());
       return null;
+    }
+  }
+
+  static Future<bool> placeOrder8Cart(PlaceOrderparams params) async {
+    try {
+      var res = await DioProvider.post(path: Endpoint.placeOrderCart, data: params.toJson(), headers: {"Authorization": "Bearer ${SheredPreferences.getUserData()?.token}"});
+      if (res.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      return false;
     }
   }
 }

@@ -8,6 +8,7 @@ class SheredPreferences {
 
   static const String kUserData = "userData";
   static const String kWishlist = "wishlist";
+  static const String korderId = "orderId";
 
   static init() async {
     prefs = await SharedPreferences.getInstance();

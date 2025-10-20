@@ -16,4 +16,5 @@ class Endpoint {
   static const String addToCart = '/add-to-cart';
   static const String updateToCart = '/update-cart';
   static const String removeFromCart = '/remove-from-cart';
+  static const String placeOrderCart = '/place-order';
 }

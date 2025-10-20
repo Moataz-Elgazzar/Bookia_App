@@ -8,21 +8,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  const MainScreen({super.key, this.index});
+
+  final int? index;
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Widget> screen = [
-    HomeScreen(),
-    WishlistScreen(),
-    CartScreen(),
-    ProfileScreen(),
-  ];
+  List<Widget> screen = [HomeScreen(), WishlistScreen(), CartScreen(), ProfileScreen()];
 
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    currentIndex = widget.index ?? currentIndex;
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant MainScreen oldWidget) {
+    currentIndex = widget.index ?? currentIndex;
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,29 +51,17 @@ class _MainScreenState extends State<MainScreen> {
         },
         items: [
           _buildNavigationBarItem(iconPath: AppImages.homesvg, label: 'Home'),
-          _buildNavigationBarItem(
-            iconPath: AppImages.bookmarksvg,
-            label: 'Wishlist',
-          ),
+          _buildNavigationBarItem(iconPath: AppImages.bookmarksvg, label: 'Wishlist'),
           _buildNavigationBarItem(iconPath: AppImages.cartsvg, label: 'Cart'),
-          _buildNavigationBarItem(
-            iconPath: AppImages.profile,
-            label: 'Profile',
-          ),
+          _buildNavigationBarItem(iconPath: AppImages.profile, label: 'Profile'),
         ],
       ),
     );
   }
 
-  BottomNavigationBarItem _buildNavigationBarItem({
-    required String iconPath,
-    required String label,
-  }) {
+  BottomNavigationBarItem _buildNavigationBarItem({required String iconPath, required String label}) {
     return BottomNavigationBarItem(
-      activeIcon: SvgPicture.asset(
-        iconPath,
-        colorFilter: ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
-      ),
+      activeIcon: SvgPicture.asset(iconPath, colorFilter: ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn)),
       icon: SvgPicture.asset(iconPath),
       label: label,
     );

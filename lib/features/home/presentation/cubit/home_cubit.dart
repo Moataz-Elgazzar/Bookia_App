@@ -17,7 +17,10 @@ class HomeCubit extends Cubit<HomeState> {
 
   getData() async {
     emit(HomeLoadingState());
-    var result = await Future.wait([HomeRepo.getBestSeller(), HomeRepo.getSlider()]);
+    var result = await Future.wait([
+      HomeRepo.getBestSeller(),
+      HomeRepo.getSlider(),
+    ]);
 
     var bestSellerRes = result[0] as BestSellerResponse?;
     var sliderRes = result[1] as SliderResponse?;
